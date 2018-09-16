@@ -60,6 +60,16 @@ describe('Users', () => {
         });
     });
 
+    it('should find user by name', () => {
+        let user = users.getUserByName('Mike', 'Node Course');
+
+        expect(user).toEqual({
+            id: '1',
+            name: 'Mike',
+            room: 'Node Course'
+        });
+    });
+
     it('should not find user', () => {
         let user = users.getUser('99');
         expect(user).toNotExist();
