@@ -17,7 +17,9 @@ function scrollToBottom() {
 
 socket.on('connect', function() {
     var params = jQuery.deparam(window.location.search);
-
+    params.room = params.room.toUpperCase();
+    var room = params.room;
+    jQuery('#room').html('<h3>' + room + '</h3>');
     socket.emit('join', params, function(err) {
         if (err) {
             alert(err);
@@ -90,7 +92,7 @@ locationButton.on('click', function () {
     navigator.geolocation.getCurrentPosition(function (position) {
         socket.emit('createLocationMessage', {
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: positiongt.coords.longitude
         });
         locationButton.removeAttr("disabled").text('Send location');
     }, function () {
