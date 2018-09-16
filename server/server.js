@@ -22,6 +22,7 @@ io.on('connection', (socket) => {
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) && !isRealString(params.room)) {
             callback('name and room name are required.');
+            return;
         }
 
         let room = params.room.toUpperCase();
@@ -30,6 +31,7 @@ io.on('connection', (socket) => {
         if (user) {
             if (user.room === room) {
                 callback(`name ${params.name} is already taken!`);
+                return;
             }
         }
 
